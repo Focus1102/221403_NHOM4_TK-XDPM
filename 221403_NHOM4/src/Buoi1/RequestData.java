@@ -1,8 +1,8 @@
 package Buoi1;
 
 public class RequestData {
-    private String number1;
-    private String number2;
+    String number1;
+    String number2;
 
     // Constructor
     public RequestData(String number1, String number2) {

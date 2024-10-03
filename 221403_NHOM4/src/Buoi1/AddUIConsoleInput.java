@@ -9,30 +9,32 @@ import java.io.PrintWriter;
 
 public class AddUIConsoleInput {
     PrintWriter stdout = null;
-
     BufferedReader stdin = null;
-    
-    AddUIConsoleInput() {
+    AddUseCaseControl addControl = null;
+
+    public AddUIConsoleInput(AddUseCaseControl addControl) {
         stdout = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)), true);
         stdin = new BufferedReader(new InputStreamReader(System.in));
+        this.addControl = addControl;
     }
 
-    public static RequestData inputData() throws IOException {
+    // Phương thức này nhận dữ liệu đầu vào từ người dùng
+    public void inputData() throws IOException {
+        RequestData requestData = new RequestData(null, null);
 
-        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
-        PrintWriter stdout = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)), true);
-        RequestData requestData = new RequestData("", ""); // Gán giá trị mặc định là chuỗi rỗng
-
-        stdout.print("Nhap so thu nhat: ");
+        // Nhập số thứ nhất
+        stdout.print("Input number 1: ");
         stdout.flush();
-        String input1 = stdin.readLine();
-        requestData.setNumber1(input1);
+        requestData.number1 = stdin.readLine();
 
-        stdout.print("Nhap so thu hai: ");
+        // Nhập số thứ hai
+        stdout.print("Input number 2: ");
         stdout.flush();
-        String input2 = stdin.readLine();
-        requestData.setNumber2(input2);
+        requestData.number2 = stdin.readLine();
 
-        return requestData;
+        // 2. Gọi phương thức execute để xử lý dữ liệu nhập
+        addControl.execute(requestData);
     }
 }
+
+
